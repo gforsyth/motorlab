@@ -11,6 +11,9 @@ int oldphi = 0;
 int newphi = 0;
 int inByte = 0;
 
+int xlim = 640;
+int ylim = 480;
+String filename = "velocity.csv";
 
 void setup() 
 {
@@ -28,6 +31,9 @@ void loop()
     inByte = Serial.read();
     
     //students can write code from here until end of loop()
+    //PLAN: send in something to plot (velocity, whatever)
+    //also send in plotting window
+    //also send filename to save data to
     md.setM2Speed(50);
     newtime = millis();
     newphi = motor.read();
@@ -52,7 +58,12 @@ void loop()
 
 void establishContact() {
  while (Serial.available() <= 0) {
-      Serial.println("hello");   // send a starting message
+      Serial.print(xlim);
+      Serial.print(",");
+      Serial.print(ylim);
+      Serial.print(",");
+      Serial.print(filename);
+      Serial.println();   // send a starting message
       delay(300);
    }
  }
